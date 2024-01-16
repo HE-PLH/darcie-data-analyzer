@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+a {
+    text-decoration: none;
+}
+
+#app-content {
+    background-color: #cfd8dc;
+
+    .under-topbar {
+        justify-content: flex-start;
+
+        aside {
+            padding-top: 100px;
+            background-color: #90a4ae;
+            height: 90vh;
+        }
+
+        main {
+            padding-top: 100px;
+
+            .data-sheet-paper {
+                margin-bottom: 20px;
+                margin-right: 15px;
+
+                .paper {
+                    padding-top: 10px;
+                }
+            }
+        }
+    }
+}
+
+.drawer {
+    margin-top: 200px;
+}
+
+.file-input-button {
+    input {
+        display: none;
+    }
+}
+
+.data-grid {
+    .cell {
+        position: relative;
+        min-width: 5em;
+
+        &.cell-label {
+            .value-viewer {
+                text-align: center;
+            }
+        }
+
+        &.cell-add-button {
+            vertical-align: middle;
+
+            .value-viewer {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+        &.cell-invalid {
+            background-color: #ffbec0;
+        }
+    }
+}
+
+.example-chart-paper {
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
+
+    .horizontal-chart {
+        transform: rotate(90deg);
+    }
+}
+
+.arrow-pointer-container {
+    color: inherit;
+}

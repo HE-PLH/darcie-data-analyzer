@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+a {
+  text-decoration: none;
+}
+
+#app-content {
+  background-color: #cfd8dc;
+}
+#app-content .under-topbar {
+  justify-content: flex-start;
+}
+#app-content .under-topbar aside {
+  padding-top: 100px;
+  background-color: #90a4ae;
+  height: 90vh;
+}
+#app-content .under-topbar main {
+  padding-top: 100px;
+}
+#app-content .under-topbar main .data-sheet-paper {
+  margin-bottom: 20px;
+  margin-right: 15px;
+}
+#app-content .under-topbar main .data-sheet-paper .paper {
+  padding-top: 10px;
+}
+
+.drawer {
+  margin-top: 200px;
+}
+
+.file-input-button input {
+  display: none;
+}
+
+.data-grid .cell {
+  position: relative;
+  min-width: 5em;
+}
+.data-grid .cell.cell-label .value-viewer {
+  text-align: center;
+}
+.data-grid .cell.cell-add-button {
+  vertical-align: middle;
+}
+.data-grid .cell.cell-add-button .value-viewer {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.data-grid .cell.cell-invalid {
+  background-color: #ffbec0;
+}
+
+.example-chart-paper {
+  width: 100px;
+  height: 100px;
+  vertical-align: middle;
+}
+.example-chart-paper .horizontal-chart {
+  transform: rotate(90deg);
+}
+
+.arrow-pointer-container {
+  color: inherit;
+}
