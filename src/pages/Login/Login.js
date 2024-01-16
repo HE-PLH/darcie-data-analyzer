@@ -45,11 +45,12 @@ const Login = ({ setUserState }) => {
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(user);
-      axios.post("http://localhost:9002/login", user).then((res) => {
+      navigate("/dashboard", { replace: true });
+      /*axios.post("http://localhost:9002/login", user).then((res) => {
         alert(res.data.message);
         setUserState(res.data.user);
         navigate("/", { replace: true });
-      });
+      });*/
     }
   }, [formErrors]);
   return (
