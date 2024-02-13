@@ -1,11 +1,8 @@
 import {Component} from "react";
 import React from "react";
-import ScatterChart from "recharts/es6/chart/ScatterChart";
-import Scatter from "recharts/es6/cartesian/Scatter";
-import {XAxis, YAxis} from "recharts";
+import {Cell, LabelList, Scatter, ScatterChart, XAxis, YAxis} from "recharts";
 import {getRenderableDataForSet} from "../../utils/utils";
-import Cell from "recharts/es6/component/Cell";
-import LabelList from "recharts/es6/component/LabelList";
+
 
 
 class MyScatterChart extends Component {

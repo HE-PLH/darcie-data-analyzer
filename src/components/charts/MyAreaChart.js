@@ -1,7 +1,6 @@
 import {Component} from "react";
 import React from "react";
-import AreaChart from "recharts/es6/chart/AreaChart";
-import Area from "recharts/es6/cartesian/Area";
+import {Area, AreaChart} from "recharts";
 import {getRenderableDataForDataSets} from "../../utils/utils";
 import {XAxis, YAxis} from "recharts";
 

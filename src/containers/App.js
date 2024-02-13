@@ -1,4 +1,6 @@
-import connect from "react-redux/es/connect/connect";
+import React from 'react';
+import { connect } from 'react-redux'; // Import connect from react-redux
+import Layout from '../components/Layout';
 import {
     VERTICAL_BAR_CHART,
     LINE_CHART,
@@ -6,10 +8,10 @@ import {
     PIE_CHART,
     AREA_CHART,
     HORIZONTAL_BAR_CHART
-} from "../constants/ChartType";
-import {setChartType} from "../actions/ChartActions";
-import Layout from "../components/Layout";
+} from '../constants/ChartType';
+import { setChartType } from '../actions/ChartActions';
 
+// mapStateToProps and mapDispatchToProps functions
 const mapStateToProps = (state, ownProps) => ({
     currentChartType: state.chart.present.type
 });
@@ -23,7 +25,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     setPieChart: () => dispatch(setChartType(PIE_CHART))
 });
 
-export default connect(
+// Connect Layout component with Redux store
+const ConnectedLayout = connect(
     mapStateToProps,
     mapDispatchToProps
 )(Layout);
+
+export default ConnectedLayout;

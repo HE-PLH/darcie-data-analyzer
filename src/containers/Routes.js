@@ -5,6 +5,7 @@ import Register from "./../pages/Register/Register";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import React, {useState} from "react";
 import App from "./App";
+import Bridge from "./bridge"
 
 
 function MyRoutes() {
@@ -32,7 +33,7 @@ function MyRoutes() {
                     ></Route>
                     <Route path="/signup" element={<Register/>}></Route>
                     <Route path="*" element={<h1>404 Not Found</h1>}></Route>
-                    <Route path="/dashboard" element={App}></Route>
+                    <Route path="/dashboard" element={Bridge}></Route>
                 </Routes>
             </Router>
         </div>

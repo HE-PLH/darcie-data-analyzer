@@ -16,16 +16,37 @@ import ExamplePieChart from "./exampleCharts/ExamplePieChart";
 import ExampleLineChart from "./exampleCharts/ExampleLineChart";
 import ExampleScatterChart from "./exampleCharts/ExampleScatterChart";
 import Paper from "@material-ui/core/Paper/Paper";
+import Button from "@material-ui/core/Button";
 
 class Layout extends Component {
+    constructor(props) {
+        super(props);
+        this.logout = this.logout.bind(this);
+    }
+
+    logout() {
+        window.location.href = '/';
+            /*fetch('/logout', {
+                method: 'GET',
+                credentials: 'include'
+            })
+                .then(response => {
+                    if (response.status === 200) {
+                        window.location.href = '/';
+                    }
+                });*/
+    }
     render() {
         return (
             <div id="app-content">
                 <AppBar position="fixed">
-                    <Toolbar>
+                    <Toolbar style={{display: 'flex', flexDirection: "row", justifyContent: "space-between"}}>
                         <Typography variant="title" color="inherit">
                             Darcie Chart
                         </Typography>
+                        <Button color="inherit" onClick={ () => this.logout() }>
+                            Logout
+                        </Button>
                     </Toolbar>
                 </AppBar>
                 <Grid container spacing={16} className="under-topbar" justify="center" direction="row">

@@ -1,9 +1,7 @@
 import {Component} from "react";
 import React from "react";
-import LineChart from "recharts/es6/chart/LineChart";
-import Line from "recharts/es6/cartesian/Line";
+import {Line, LineChart, XAxis, YAxis} from "recharts";
 import {getRenderableDataForDataSets} from "../../utils/utils";
-import {XAxis, YAxis} from "recharts";
 
 class MyLineChart extends Component {
 

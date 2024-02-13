@@ -1,6 +1,5 @@
 import React from "react";
-import LineChart from "recharts/es6/chart/LineChart";
-import Line from "recharts/es6/cartesian/Line";
+import {Line, LineChart} from "recharts";
 import {EXAMPLE_POINT_DATA} from "../../constants/DataConstants";
 import Paper from "@material-ui/core/Paper/Paper";
 

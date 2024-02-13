@@ -1,8 +1,7 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper/Paper";
 import {EXAMPLE_BAR_DATA} from "../../constants/DataConstants";
-import PieChart from "recharts/es6/chart/PieChart";
-import Pie from "recharts/es6/polar/Pie";
+import {Pie, PieChart} from "recharts";
 
 class ExamplePieChart extends React.Component {
     render() {

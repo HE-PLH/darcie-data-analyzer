@@ -1,9 +1,7 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper/Paper";
 import {EXAMPLE_POINT_DATA} from "../../constants/DataConstants";
-import ScatterChart from "recharts/es6/chart/ScatterChart";
-import Scatter from "recharts/es6/cartesian/Scatter";
-import YAxis from "recharts/es6/cartesian/YAxis";
+import {Scatter, ScatterChart, YAxis} from "recharts";
 
 class ExampleScatterChart extends React.Component {
     render() {

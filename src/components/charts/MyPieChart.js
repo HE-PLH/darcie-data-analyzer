@@ -1,7 +1,6 @@
 import {Component} from "react";
 import React from "react";
-import PieChart from "recharts/es6/chart/PieChart"
-import Pie from "recharts/es6/polar/Pie"
+import {Pie, PieChart} from "recharts";
 import {getRenderableDataForSet} from "../../utils/utils";
 
 class MyPieChart extends Component {

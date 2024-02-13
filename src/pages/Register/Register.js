@@ -10,8 +10,7 @@ const Register = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [user, setUserDetails] = useState({
-    fname: "",
-    lname: "",
+    username: "",
     email: "",
     password: "",
     cpassword: "",
@@ -28,11 +27,8 @@ const Register = () => {
   const validateForm = (values) => {
     const error = {};
     const regex = /^[^\s+@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.fname) {
-      error.fname = "First Name is required";
-    }
-    if (!values.lname) {
-      error.lname = "Last Name is required";
+    if (!values.username) {
+      error.lnameusername = "User Name is required";
     }
     if (!values.email) {
       error.email = "Email is required";
@@ -65,8 +61,8 @@ const Register = () => {
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(user);
-      axios.post("http://localhost:9002/signup/", user).then((res) => {
-        alert(res.data.message);
+      axios.post("http://localhost:8000/api/v1/auth/register/", user).then((res) => {
+        alert(res.data);
         navigate("/login", { replace: true });
       });
     }
@@ -76,24 +72,16 @@ const Register = () => {
       <div className={registerstyle.register}>
         <form>
           <h1>Create your account</h1>
+
           <input
             type="text"
-            name="fname"
-            id="fname"
-            placeholder="First Name"
+            name="username"
+            id="username"
+            placeholder="Username"
             onChange={changeHandler}
-            value={user.fname}
+            value={user.username}
           />
-          <p className={basestyle.error}>{formErrors.fname}</p>
-          <input
-            type="text"
-            name="lname"
-            id="lname"
-            placeholder="Last Name"
-            onChange={changeHandler}
-            value={user.lname}
-          />
-          <p className={basestyle.error}>{formErrors.lname}</p>
+          <p className={basestyle.error}>{formErrors.username}</p>
           <input
             type="email"
             name="email"
