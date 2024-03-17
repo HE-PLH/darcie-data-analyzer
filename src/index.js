@@ -11,9 +11,9 @@ const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && wi
 
 ReactDOM.render(
     <Provider store={store}>
-        {/*<App />*/}
+        <App />
         {/*<Bridge />*/}
-        <MyRoutes />
+        {/*<MyRoutes />*/}
     </Provider>,
     document.getElementById('root')
 );

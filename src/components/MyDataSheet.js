@@ -18,6 +18,19 @@ class MyAddEmptyDataButton extends Component {
 }
 
 class MyDataSheet extends Component {
+    constructor(props) {
+        super(props);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
+      }
+
+
+    handleKeyPress (event) {
+        console.log(event.key)
+        if (event.key === "Enter") {
+            event.preventDefault();
+            console.log('ENTER')
+        }
+    };
 
     onCellsChanged(changes) {
         changes.forEach(({cell, row, col, value}) => {
@@ -26,9 +39,22 @@ class MyDataSheet extends Component {
             } else if (row === 1) {
                 console.log('CAN"T EDIT XY ROW');
             } else {
+
+                console.log("changes happened")
                 const setIndex = Math.floor(col / 2);
                 const dataIndex = row - 3;
                 const newData = this.props.dataSets[setIndex].data[dataIndex];
+
+                // if value starts with a equal sign, it is a formula
+                if (value.startsWith("=")) {
+                    console.log("FORMULA")
+                    console.log(eval(value.slice(1)))
+                    // set the label to the result of the formula
+                    value = eval(value.slice(1));
+
+                    console.log(setIndex)
+                    console.log(dataIndex)
+                }
 
                 if (col % 2) {
                     newData.y = value;
@@ -77,6 +103,8 @@ class MyDataSheet extends Component {
             )
         );
 
+        
+
         //XY ROW
         grid.push([].concat(...this.props.dataSets.map( () => (
             [
@@ -84,6 +112,7 @@ class MyDataSheet extends Component {
                 {value: 'y', readOnly: true}
             ]
         ))));
+
 
         //DATA
         for( let row = 0 ; row < rowPointLength ; row++ ){
@@ -127,6 +156,7 @@ class MyDataSheet extends Component {
                 data={this.generateGrid()}
                 valueRenderer={(cell) => cell.value}
                 onCellsChanged={changes => this.onCellsChanged(changes)}
+                onKeyDown={this.handleKeyPress}
             />
         );
     };
