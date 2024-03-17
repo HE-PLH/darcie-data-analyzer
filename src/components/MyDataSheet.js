@@ -103,7 +103,10 @@ class MyDataSheet extends Component {
             )
         );
 
-        
+
+
+
+
 
         //XY ROW
         grid.push([].concat(...this.props.dataSets.map( () => (
@@ -146,6 +149,13 @@ class MyDataSheet extends Component {
             readOnly: true,
             colSpan: 2 * colPointLength
         }]);
+        //add row with letter labels like A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P
+        let letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        let letterRow = [];
+        for (let i = 0; i < rowPointLength; i++) {
+            letterRow.push({value: letters[i], readOnly: true});
+        }
+        grid.push(letterRow);
 
         return grid;
     }
