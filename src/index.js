@@ -13,7 +13,7 @@ ReactDOM.render(
     <Provider store={store}>
         <App />
         {/*<Bridge />*/}
-        {/*<MyRoutes />*/}
+       {/* <MyRoutes />*/}
     </Provider>,
     document.getElementById('root')
 );

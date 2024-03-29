@@ -8,6 +8,72 @@ import {isPointValid} from "../utils/utils";
 
 const nonDataRows = 3;
 
+const sheetData = [
+  [5, 2, 3], // Corresponds to Excel row 1, cells A1:C1
+  [4, 1, 6], // Row 2, cells A2:C2
+  // Add more rows as needed
+];
+
+// Function to convert Excel column letter to array index
+function colLetterToIndex(col) {
+  let column = 0, length = col.length;
+  for (let i = 0; i < length; i++) {
+    column += (col.charCodeAt(i) - 64) * Math.pow(26, length - i - 1);
+  }
+  return column - 1;
+}
+
+// Function to parse cell range, e.g., A1:B2
+function parseRange(range) {
+  const match = range.match(/([A-Z]+)(\d+):([A-Z]+)(\d+)/);
+  if (!match) return null;
+
+  const startCol = colLetterToIndex(match[1]);
+  const startRow = parseInt(match[2], 10) - 1;
+  const endCol = colLetterToIndex(match[3]);
+  const endRow = parseInt(match[4], 10) - 1;
+
+  return { startRow, endRow, startCol, endCol };
+}
+
+// Main function to parse formula
+function parseExcelFormula(sheet, formula) {
+  const sumRegex = /^SUM\(([^)]+)\)$/;
+  const avgRegex = /^AVERAGE\(([^)]+)\)$/;
+
+  let match;
+
+  // Handle SUM formula
+  if ((match = formula.match(sumRegex))) {
+    const range = parseRange(match[1]);
+    if (!range) return NaN;
+    let sum = 0;
+    for (let i = range.startRow; i <= range.endRow; i++) {
+      for (let j = range.startCol; j <= range.endCol; j++) {
+        sum += sheet[i][j];
+      }
+    }
+    return sum;
+  }
+
+  // Handle AVERAGE formula
+  if ((match = formula.match(avgRegex))) {
+    const range = parseRange(match[1]);
+    if (!range) return NaN;
+    let sum = 0;
+    let count = 0;
+    for (let i = range.startRow; i <= range.endRow; i++) {
+      for (let j = range.startCol; j <= range.endCol; j++) {
+        sum += sheet[i][j];
+        count++;
+      }
+    }
+    return sum / count;
+  }
+
+  return NaN;
+}
+
 class MyAddEmptyDataButton extends Component {
     render() {
         return (
@@ -50,7 +116,12 @@ class MyDataSheet extends Component {
                     console.log("FORMULA")
                     console.log(eval(value.slice(1)))
                     // set the label to the result of the formula
-                    value = eval(value.slice(1));
+                    let val = (value.slice(1));
+                    const formula = "SUM(A1:B2)";
+                    const result = parseExcelFormula(sheetData, formula);
+                    console.log(result);
+
+                    value=eval(val)
 
                     console.log(setIndex)
                     console.log(dataIndex)
