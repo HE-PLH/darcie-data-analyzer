@@ -10,10 +10,6 @@ import Bridge from "./containers/bridge";
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-        {/*<Bridge />*/}
-       {/* <MyRoutes />*/}
-    </Provider>,
+        <MyRoutes />,
     document.getElementById('root')
 );

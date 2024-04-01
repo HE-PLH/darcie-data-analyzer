@@ -25,6 +25,7 @@ function colLetterToIndex(col) {
 
 // Function to parse cell range, e.g., A1:B2
 function parseRange(range) {
+    console.log(range)
   const match = range.match(/([A-Z]+)(\d+):([A-Z]+)(\d+)/);
   if (!match) return null;
 
@@ -36,10 +37,50 @@ function parseRange(range) {
   return { startRow, endRow, startCol, endCol };
 }
 
+
+// Function to convert data to 2D array
+function dataTo2DArray(data) {
+    let xValues = new Set();
+    let dt = [];
+
+    // Extract unique x values
+    data.forEach(set => {
+        set.data.forEach(point => {
+            xValues.add(+point.x); // Convert string to number and add to the set
+        });
+    });
+
+    let sortedXValues = Array.from(xValues).sort((a, b) => a - b);
+
+    // Initialize dt with empty arrays
+    for (let i = 0; i < sortedXValues.length; i++) {
+        dt.push([]);
+    }
+
+    // Populate dt with y values
+    sortedXValues.forEach((xVal, index) => {
+        data.forEach(set => {
+            let found = set.data.find(point => +point.x === xVal);
+            if (found) {
+                dt[index].push(+found.y); // Convert string to number and add to dt
+            } else {
+                dt[index].push(null); // Placeholder for missing values, adjust as needed
+            }
+        });
+    });
+
+    return dt;
+}
+
+
+
+
 // Main function to parse formula
-function parseExcelFormula(sheet, formula) {
+function parseExcelFormula(data, formula) {
   const sumRegex = /^SUM\(([^)]+)\)$/;
   const avgRegex = /^AVERAGE\(([^)]+)\)$/;
+
+  console.log(dataTo2DArray(data))
 
   let match;
 
@@ -48,11 +89,18 @@ function parseExcelFormula(sheet, formula) {
     const range = parseRange(match[1]);
     if (!range) return NaN;
     let sum = 0;
-    for (let i = range.startRow; i <= range.endRow; i++) {
-      for (let j = range.startCol; j <= range.endCol; j++) {
-        sum += sheet[i][j];
-      }
+
+    for(let i= 0;i<data.length;i++) {
+        let set = data[i];
+
+      // for (let point of set.data) {
+      //   if (point.x >= range.startRow && point.x <= range.endRow &&
+      //       point.y >= range.startCol && point.y <= range.endCol) {
+      //     sum += parseInt(point.valid ? point.y : 0, 10);
+      //   }
+      // }
     }
+      console.log(sum)
     return sum;
   }
 
@@ -62,10 +110,13 @@ function parseExcelFormula(sheet, formula) {
     if (!range) return NaN;
     let sum = 0;
     let count = 0;
-    for (let i = range.startRow; i <= range.endRow; i++) {
-      for (let j = range.startCol; j <= range.endCol; j++) {
-        sum += sheet[i][j];
-        count++;
+    for (let set of data) {
+      for (let point of set.data) {
+        if (point.x >= range.startRow && point.x <= range.endRow &&
+            point.y >= range.startCol && point.y <= range.endCol) {
+          sum += parseInt(point.valid ? point.y : 0, 10);
+          count++;
+        }
       }
     }
     return sum / count;
@@ -73,6 +124,7 @@ function parseExcelFormula(sheet, formula) {
 
   return NaN;
 }
+
 
 class MyAddEmptyDataButton extends Component {
     render() {
@@ -118,7 +170,8 @@ class MyDataSheet extends Component {
                     // set the label to the result of the formula
                     let val = (value.slice(1));
                     const formula = "SUM(A1:B2)";
-                    const result = parseExcelFormula(sheetData, formula);
+                    console.log(this.props.dataSets)
+                    const result = parseExcelFormula(this.props.dataSets, formula);
                     console.log(result);
 
                     value=eval(val)
