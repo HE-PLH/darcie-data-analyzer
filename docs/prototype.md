@@ -1,38 +1,33 @@
-# Statyczny projekt interfejsu
+Static Interface Project
+InterfacePrototype
 
-![InterfacePrototype](img/prototype.svg)
+1. Introduction
+1.1 Tools Used - draw.io
+The diagram was created using the free draw.io program. It has built-in elements useful for prototyping user interfaces such as buttons and charts.
 
-## 1. Wstęp
+1.2 Prototype Goals
+The primary goal of creating the functional prototype was the need to plan the layout of user interface elements in the application window. The final interface did not come about immediately; its creation involved many "dirty" projects and discussions about the arrangement of individual elements. It was an iterative process.
 
-### 1.1 Wykorzystane narzędzia - draw.io
-Do stworzenia diagramu wykorzystano darmowy program draw.io. Posiada on wbudowane elementy przydatne przy prototypowaniu interfejsu użytkownika takie jak przyciski czy wykresy. 
+1.3 Main Assumption of the Prototype Created
+During the prototype creation, despite various early versions, we decided to try to create an interface similar to other known interfaces so that the future user could easily navigate our application. Additionally, we wanted to eliminate as many additional views as possible. Therefore, the entire interface was designed to minimize unnecessary add-ons. This way, we reduced the application interface to only one view.
 
-### 1.2 Cele proptotypu
-Głównym celem tworzenia prototypu funkcjonalnego była potrzeba zaplanowania rozłożenia elementów użytkownika w oknie aplikacji. Ostateczny interfejs nie powstał od razu, jego wytworzenie wiązało się w wieloma projektami "na brudno" i dyskusją nad rozłożeniem poszczególnych elementów. Był to proces iteracyjny.
+2. Description of the Application Interface
+2.1 Chart
+The basic element of the application for creating charts is, of course, the chart itself. The chart changes its mode depending on the type of chart chosen by the user.
 
-### 1.3 Główne założenie stworzonego prototypu
-Podczas tworzenia prototypu pomimo różnych wczesnych wersji zdecydowaliśmy, że spróbujemy stworzyć interfejs podobny do innych znanych już interfejsów, tak oby przyszły użytkownik mógł bez trudności odnaleźć się w naszej aplikacji. Ponadto chcieliśmy zrezygnować z jak największej ilości dodatkowych widoków. Dlatego też cała interfejs został zaprojektowany tak by minimalizować niepotrzebne dodatki. Tym sposobem ograniczyliśmy interfejs aplikacji tylko do __jednego__ widoku.
+Directly above it is the chart title. It can be edited by clicking on the title, which will open it in edit mode.
+Clicking directly on a point presented on the chart marks it with an arrow. The user will be prompted to enter a name for the arrow in a dialog box.
+Beneath the chart is a legend that informs and identifies the datasets presented on the chart.
+2.2 Table
+Below the chart is a table made in the style familiar to the user from the Excel spreadsheet program. This table is the main control point for the application. The exact structure of the table was previously designed to allow the user direct access to many elements characterizing the data presented on the chart. It was also necessary to decide to always represent and store data in the form of points with x and y coordinates. This is the default mode for most available charts in the application: point, line, area, vertical bar, and horizontal bar. The exception is the pie chart, for which we decided to use only the x-coordinate of each point, omitting the y-coordinate. However, for the clarity of displaying data stored as points with two coordinates, we did not change the way the table is displayed. A detailed description of the table structure by rows:
 
-## 2. Opis interfejsu aplikacji
+Dataset Name - The first row consists of merged pairs of columns presenting dataset names. By editing cells, the user can change the dataset name.
+Dataset Color Indicator - The second row also consists of merged cells similar to the first row. However, they contain rectangles serving as color indicators for the dataset. By clicking on a specific indicator, the user is presented with the default color selection palette. By selecting a color from the palette, the user changes the color of the dataset.
+Ordering Labels - Cells containing the labels "x" and "y" respectively, which are points of reference for the user during data editing, are disabled from editing.
+Point Coordinates - The lower rows of the table contain consecutive point coordinates, placed horizontally below the name of the dataset. The user can directly edit cells by editing values in the dataset.
+Other equally important elements of the table are buttons for adding new datasets and buttons for adding new points to existing datasets. They are intuitively placed. The new dataset button is located in the middle of the table height to the right of it, and the new point addition button is in the middle of the table width below it. Clicking these buttons results in the creation of a completely new empty dataset that appears to the right of existing datasets for the new dataset button and the addition of empty cells representing the coordinates of the new point to each dataset for the new point addition button.
+2.3 Sidebar
+On the left side of the interface is a sidebar containing the remaining interface elements. Starting from the top at the same height, there are Undo and Redo buttons. They allow undoing and redoing application actions. Below them are the "Import Data" and "Export Data" buttons. Clicking "Import Data" presents the user with a system file selection window. This way, it is possible to load data from a CSV file into the application. Clicking the "Export Data" button immediately initiates data downloading from the application in CSV file format. Below is a matrix of six large square buttons allowing selection of the chart type.
 
-### 2.1 Wykres
-Podstawowym elementem aplikacji do tworzenia wykresów został oczywiście wykres. Wykres zmienia swój tryb w zależności od tego jaki typ wykresu wybierze użytkownik.
-* Bezpośrednio nad nim znajduje się tytuł wykresu. Można go edytować klikając na tytuł, wtedy otworzy się on w trybie edycji. 
-* Klikając bezpośrednio w punkt zaprezentowany na wykresie oznaczamy go strzałką. Użytkownikowi pokaże się dialog w którym będzie poproszony o podanie nazwy strzałki. 
-* Pod wykresem znajduje się legenda informująca i identyfikująca zaprezentowane na wykresie zbiory danych.
-
-### 2.2 Tabela 
-Pod wykresem znajduje się tabela wykonana w stylu znajomego dla użytkownika arkusza kalkulacyjnego programu Excel. Tabela ta jest głównym punktem sterowania aplikacją.  Dokładna struktura tabeli została wcześniej zaprojektowana, by umożliwić użytkownikowi bezpośredni dostęp do wielu elementów charakteryzujących przedstawiane na wykresie dane. Wymagane było także podjęcie decyzji aby dane zawsze przedstawiać i przechowywać w formie punktów o współrzędnych x i y. Jest to domyślny tryb dla większości dostępnych w aplikacji wykresów: punktowego, liniowego, obszaru, słupkowego pionowego i poziomego. Wyjątkiem jest wykres kołowy w przypadku którego zdecydowaliśmy wykorzystywać tylko współrzędną x danego punktu, współrzędna y zostaje pominięta. Jednak dla przejrzystości wyświetlania danych przechowywanych jako punkty dwóch współrzędnych, nie zmienialiśmy sposobu wyświetlania tabeli. Dokładny opis struktury tabeli według wierszy:
-* Nazwa zbioru danych - Pierwszy wiersz składa się ze scalonych po dwie kolumn prezentujących nazwy zbiorów danych. Edytując komórki użytkownik może zmienić nazwę zbioru danych.
-* Wskaźnik koloru danego zbioru danych - Drugi wiersz to także scalone komórki identycznie jak w wierszu pierwszym. Zawierają one jednak prostokąty będące wskaźnikiem koloru danego zbioru danych. Klikając na dany wskaźnik użytkownikowi ukazuje się domyślna pleta wyboru koloru. Wybierając kolor z palety użytkownik zmienia kolor danego zbioru danych.
-* Etykiety porządkujące - Wyłączone z edycji komórki zawierają kolejno wpisane etykiety "x" i "y" będące punktem odniesienia dla użytkownika podczas edycji danych.
-* Współrzędnie punktów - Niższe wiersze tabeli zawierają odpowiednio kolejne współrzędne punktów, umieszczone w poziomie pod nazwą danego zbioru danych. Użytkownik może bezpośrednio edytować komórki edytując wartości w zbiorze danych. 
-* Pozostałymi równie ważnymi elementami tabeli są przycisk dodawania nowych zbiorów danych i przycisk dodawania nowych punktów do istniejących już zbiorów danych. Są one umieszczone w sposób intuicyjny. Przycisk nowych zbiorów danych na śrdoku wysokości tabeli na prawo od niej, a przycisk dodawania nowych punktów na środku szerokości tabeli pod jej spodem. Efektem działania tych przycisków są odpowiednio utworzenie całego nowego pustego zbioru danych który pojawia się na prawo od istniejących już zbiorów dla przycisku dodawania nowych zbiorów danych i dodanie do każdego zbioru pustych komórek będących współrzędnymi nowego punktu dla przycisku dodawania nowych punktów.
-  
-### 2.3 Sidebar
-Po lewej stronie interfejsu znajduje się pasek boczny, na którym znajdują się pozostałe elementy interfejsu. Zaczynając od góry na jednej wysokości umiezczone są przyciski Undo i Redo. Umożliwiają one cofanie i powtarzanie akcji aplikacji. Poniżej umieszczone są przyciski "Import Data" i "Export Data". Klikając "Import Data" użytkownikowi prezentuje się systemowo okno wyboru pliu. W ten sposób możliwe jest załadowanie do aplikacji danych z pliku CSV. Wybranie przycisku "Export Data" uruchamia natychmiastowe pobieranie danych z aplikacji w formacie pliku CSV. Poniżej znajduje się matryca sześciu dużych kwadratowych przycisków, pozwalających na wybranie typu wykresu.
-
-### 2.4 Appbar
-Interfejs wieńczy pasek umieszczony nad pozostałymi elementami. Przedstawia on po lewej jego stronie nazwę aplikacji.
-
-
+2.4 Appbar
+The interface is topped by a bar placed above the other elements. On the left side, it displays the application name.

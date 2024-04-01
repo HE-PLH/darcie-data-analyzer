@@ -17,16 +17,29 @@ class FileDownloadLink extends Component {
         data.push(line);
         data.push(rowSeparator);
 
+        let counter = 0;
+        let all_rows = {};
+
         this.props.dataSets.forEach((dataset) => {
+
             let row = [];
+            counter = 0;
             dataset.data.forEach((cell) => {
-                row.push(cell.x);
-                row.push(cell.y);
+                if (all_rows[counter] === undefined) {
+                    all_rows[counter] = [];
+                }
+                all_rows[counter].push(cell.x);
+                all_rows[counter].push(cell.y);
+
+                counter++;
             });
-            row.join(cellSeparator);
-            data.push(row);
-            data.push(rowSeparator);
+
+
         });
+        for (let key in all_rows) {
+            data.push(all_rows[key].join(cellSeparator));
+            data.push(rowSeparator);
+        }
 
         let properties = {type: 'text/plain'};
         let file;
