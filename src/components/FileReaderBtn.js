@@ -35,19 +35,38 @@ class FileReaderBtn extends Component {
         let readState = [];
 
         try {
+            console.log(rows);
             rows.splice(0, 1);
+
+            let counter = 0;
+            let sets = {};
 
             rows.forEach((row) => {
                 let rowPoints = [];
+                counter = 0;
                 for (let col = 0; col < row.length; col += 2) {
+                    if (sets[counter] === undefined) {
+                        sets[counter] = [];
+                    }
+
                     const newPoint = {x: row[col], y: row[col + 1]};
                     newPoint.valid = isPointValid(newPoint);
                     rowPoints.push(newPoint);
+                    sets[counter].push(newPoint);
+                    counter++;
                 }
                 readState.push(rowPoints);
             });
+            console.log("sets", sets)
 
-            this.props.setPureData(readState);
+            let _rows = [];
+            for (let key in sets) {
+                _rows.push(sets[key]);
+            }
+
+            console.log(readState);
+
+            this.props.setPureData(_rows);
         } catch (TypeError) {
             console.error("Wrong CSV format");
         }
